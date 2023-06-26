@@ -1,0 +1,161 @@
+---------------------------------------------------------------------------------------------
+find the given linked list is curcular or not
+1->2->3
+
+head
+head->next
+
+if head->next ! NULL                        n      
+
+							
+               1-> 2-> 3
+                    ---|
+
+slow = head
+//1
+fast = head -> next
+//2
+
+while(Slow not equal to fast):
+
+	slow = slow -> next //2
+	fast = fast.next.next //2
+	// now the slow == fast
+	
+return true
+---------------------------------------------------------------------------------------------
+How will you find the start node in a circular LinkedList
+1-2-3
+  |-|
+start node in circular list is 2 
+
+def find_start_node(head):
+    visited = set()
+    current = head
+
+    while current:
+        if current in visited:                     
+            return current
+
+        visited.add(current)
+        current = current.next
+
+    return None  # No start node found, linked list is not circular
+
+
+---------------------------------------------------------------------------------------------
+In a singly LinkedList, how will you find the 20th-last element? (Hint: using two pointers)
+
+p1 = head
+p2 = head                                                                      1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-1-2-3-4-5-6
+# Move p2 20 positions ahead                                                                                                   p2
+for _ in range(20):                                                            |
+        if p2 is None:							       |																		       p1      now move till p2 !=null, p1=p1->next, p2=p2->next if null return p1
+
+            return None  # Not enough elements in the list
+        p2 = p2.next
+
+    # Move both pointers simultaneously until p2 reaches the end
+    while p2 is not None:
+        p1 = p1.next
+        p2 = p2.next // will be at the 20th posistion
+
+    return p1
+
+---------------------------------------------------------------------------------------------
+find kth node from back of linked list.?
+
+                      start->1->2->3->4->null
+suppose k = 2 //output should be 3
+
+bag = head
+count = 0
+while(bag->link!=null)
+	count+=1
+return count // will get the lenght of linked list
+
+if(k>count):
+	return
+	
+1. we can do this way, will reverse a linked list and iterate the list for k time and get iterate
+2. we can do this way as well 
+do index = count-k
+// index = 4-2 //2
+traverse the linked for index times
+countIndex = 0           
+while(bag->link!=null):
+	bag = bag->link;
+	countIndex +=1
+	if(count==index):
+		return bag->info;
+
+---------------------------------------------------------------------------------------------
+find if two lists have intersection point.?
+					1->2->3->4
+						  ^
+						  |
+					   5->6
+					   
+we keep treavesing the both linked listss to do this the length of 2 linked lists
+should be same 
+
+list1 = [1,2,3,4]
+list2 = [5,6,3,4]
+node ptr = head;
+while(ptr->link!=null):
+	ptr = ptr->link
+	list1.append(ptr->info)
+	
+while(ptr->link!=null):
+	ptr = ptr->link
+	list2.append(ptr->info)
+	
+for i in list1:
+	if i in list2:
+		return "has the intersection point"
+		break
+
+---------------------------------------------------------------------------------------------
+find cycle in the linked list
+	1->2->3->4
+          |<-|
+		 
+slow =  head
+fast = head->link
+while(Slow!=fast):
+	slow = slow ->link
+	fast = fast->link
+return true
+
+---------------------------------------------------------------------------------------------
+find the middle element in the linked list
+
+				start->1->2->3->4->null
+				
+node ptr = start
+count = 0
+while(ptr->link!=null):
+	count+=1
+	ptr= ptr->link
+
+count1 = 0	
+while(ptr->link!=null):
+	count1+=1
+	if(Coun1==count):
+		return ptr->info
+		
+we can use one more way two pointers approach
+ptr1  will move one node at a time
+ptr2 will move two nodes at a time
+
+when ptr2 reaches end ptr1 will be in middle
+fast_ptr = node
+slow_ptr = node
+
+while(slow_ptr!=null and fast_ptr!=null):
+	fast_ptr = fast_ptr->link->link
+	slow_ptr = slow_ptr->link
+return slow_ptr->info
+---------------------------------------------------------------------------------------------
+
+	
