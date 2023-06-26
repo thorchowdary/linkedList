@@ -157,5 +157,51 @@ while(slow_ptr!=null and fast_ptr!=null):
 	slow_ptr = slow_ptr->link
 return slow_ptr->info
 ---------------------------------------------------------------------------------------------
+reverse a linked list
 
-	
+def reverse_linked_list(head):
+    current = head
+    previous = None
+
+    while current:
+        next_node = current.next
+        current.next = previous
+        previous = current
+        current = next_node
+
+    # Update the head of the linked list to the new head (previous)
+    head = previous
+
+    return head
+
+---------------------------------------------------------------------------------------------
+palindrome linked list
+
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+def is_palindrome_linked_list(head):
+    slow = head
+    fast = head
+    stack = []
+
+    # Step 1: Traverse to the middle and push nodes onto stack
+    while fast and fast.next:
+        stack.append(slow.val)
+        slow = slow.next
+        fast = fast.next.next
+
+    # Handle odd length, move slow pointer to skip the middle node
+    if fast:
+        slow = slow.next
+
+    # Step 2: Compare slow pointer nodes with stack elements
+    while slow:
+        if slow.val != stack.pop():
+            return False
+        slow = slow.next
+
+    return True
+
